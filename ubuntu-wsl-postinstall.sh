@@ -1,7 +1,7 @@
 #!/bin/bash -eux
 
 # options for installation
-opts=(update tools theme docker dev)
+opts=(update tools)
 
 # set umask
 umask 0022
@@ -20,7 +20,7 @@ echod() {
 # function for updating ubuntu installation
 wsl_update() {
   # fix for WLS-Ubuntu1804
-  sudo cp -p  /bin/true /sbin/ebtables
+  # sudo cp -p  /bin/true /sbin/ebtables
 
   # now updating distro
   echod "performing update (all packages and kernel)"
@@ -33,38 +33,22 @@ wsl_update() {
 wsl_tools() {
   # install basic tools
   echod "installing basic tools"
-  sudo apt-get -y install apache2 chrony curl gdebi htop openssh-server tmux tree vim wget
+  sudo apt-get -y install curl htop mkalias tree vim wget
 
   # install editor/coding tools
   echod "installing programming tools"
   sudo apt-get -y install build-essential gdb llvm-dev clang
 
-  # install image tools
-  echod "installing image and additional tools"
-  sudo apt-get -y install jpegoptim libimage-exiftool-perl
-
   # install git and git-lfs
   echod "installing git and related tools"
   sudo add-apt-repository -y ppa:git-core/ppa
   sudo apt-get update
-  sudo apt-get -y install git git-svn gitk tig
-  curl -s -o /tmp/git-lfs.sh https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh
-  sudo bash /tmp/git-lfs.sh
-  sudo apt-get -y install git-lfs
-  git lfs install
+  sudo apt-get -y install git 
 
-  echod "installing conda"
-  https://repo.anaconda.com/archive/Anaconda3-5.2.0-Linux-x86_64.sh
-  wget -O /tmp/conda.sh https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
-  bash /tmp/conda.sh -b -p $HOME/conda
-
-  # install and setup zsh
-  echod "installing and setting-up z-shell"
-  sudo apt-get -y install zsh
-  zsh --version
-  git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
-  sed -i -e 's/➜/➡/g' ~/.oh-my-zsh/themes/robbyrussell.zsh-theme
-  sed -i -e 's/✗/⌧/g' ~/.oh-my-zsh/themes/robbyrussell.zsh-theme
+  # install node latest
+  echod "installing node"
+  curl -fsSL https://deb.nodesource.com/setup_current.x | sudo -E bash -
+  sudo apt-get install -y nodejs
 }
 
 wsl_theme() {
@@ -120,30 +104,6 @@ wsl_docker() {
   sudo chmod +x /usr/local/bin/docker-compose
 }
 
-wsl_ros() {
-  ROS_VERSION=melodic
-  echod "installing ros $ROS_VERSION"
-
-  # setup source-list and keys
-  sudo sh -c "echo 'deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main' > /etc/apt/sources.list.d/ros-latest.list"
-  curl -fsSL "http://ha.pool.sks-keyservers.net/pks/lookup?op=get&search=0x421C365BD9FF1F717815A3895523BAEEB01FA116" > /tmp/roskey
-  sudo apt-key add /tmp/roskey
-  sudo apt-get update
-
-  # install ros-$ROS_VERSION-desktop
-  sudo apt-get -y install \
-  ros-$ROS_VERSION-desktop \
-  ros-$ROS_VERSION-perception \
-  ros-$ROS_VERSION-joy \
-  python-catkin-tools
-  # ros-$ROS_VERSION-navigation \
-  # ros-$ROS_VERSION-teleop-twist-joy \
-
-  ## setup rosdep
-  sudo rosdep init
-  rosdep update
-}
-
 wsl_dev() {
   # install dotfiles
   echod "installing dotfiles"
@@ -170,5 +130,4 @@ unset -f wsl_update
 unset -f wsl_tools
 unset -f wsl_theme
 unset -f wsl_docker
-unset -f wsl_ros
 unset -f wsl_dev
