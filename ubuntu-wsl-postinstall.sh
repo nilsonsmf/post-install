@@ -37,7 +37,7 @@ wsl_tools() {
 
   # install editor/coding tools
   echod "installing programming tools"
-  sudo apt-get -y install build-essential php7.4-cli composer php-doctrine-dbal php-dev
+  sudo apt-get -y install build-essential 
 
   # install git and git-lfs
   echod "installing git and related tools"
@@ -115,6 +115,11 @@ wsl_dev() {
   sudo mkdir -p /etc/sudoers.d
   sudo touch /etc/sudoers.d/$USER
   sudo sh -c "echo '$USER ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers.d/$USER"
+  
+  # install php tools
+  echod "installing programming tools"
+  sudo apt-get -y install php7.4-cli composer php-doctrine-dbal php-dev
+
 }
 
 # now execute given options
