@@ -37,7 +37,7 @@ wsl_tools() {
 
   # install editor/coding tools
   echod "installing programming tools"
-  sudo apt-get -y install build-essential php7.4-cli composer
+  sudo apt-get -y install build-essential php7.4-cli composer php-doctrine-dbal
 
   # install git and git-lfs
   echod "installing git and related tools"
