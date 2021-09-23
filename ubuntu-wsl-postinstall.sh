@@ -119,7 +119,8 @@ wsl_dev() {
   # install php tools
   echod "installing programming tools"
   sudo apt-get -y install php7.4-cli composer php-doctrine-dbal php-dev
-
+  sudo pecl channel-update pecl.php.net
+  sudo pecl install xdebug
 }
 
 # now execute given options
