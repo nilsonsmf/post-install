@@ -121,6 +121,10 @@ wsl_dev() {
   sudo apt-get -y install php7.4-cli composer php-doctrine-dbal php-dev
   sudo pecl channel-update pecl.php.net
   sudo pecl install xdebug
+
+  # install webdev tools
+  sudo npm install -g @vue/cli
+  sudo npm install -g @angular/cli
 }
 
 # now execute given options
