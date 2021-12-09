@@ -33,7 +33,7 @@ wsl_update() {
 wsl_tools() {
   # install basic tools
   echod "installing basic tools"
-  sudo apt-get -y install curl htop mkalias tree vim wget
+  sudo apt-get -y install curl htop mkalias tree vim wget colordiff 
 
   # install editor/coding tools
   echod "installing programming tools"
