@@ -105,11 +105,6 @@ wsl_docker() {
 }
 
 wsl_dev() {
-  # install dotfiles
-  echod "installing dotfiles"
-  git clone https://github.com/harmishhk/dotfiles ~/dotfiles
-  source ~/dotfiles/install.sh
-
   # password less sudo-ing
   echod "==> enabling password-less sudo-ing"
   sudo mkdir -p /etc/sudoers.d
