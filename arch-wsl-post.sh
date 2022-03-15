@@ -33,6 +33,7 @@ wsl_init() {
   echod "Fix WSL Network"
   echo "[network]" | sudo tee /etc/wsl.conf
   echo "generateResolvConf = false" | sudo tee -a /etc/wsl.conf
+  echo "nameserver 192.168.1.1" | sudo tee /etc/resolv.conf
   echod "Restart shell"
 }
 wsl_packages() {
