@@ -14,18 +14,18 @@ echod() {
 }
 
 wsl_update() {
-  wsl_init();
-  wsl_packages();
-  wsl_yay();
+  wsl_init()
+  wsl_packages()
+  wsl_yay()
 }
 wsl_tools() {
-  wsl_fonts();
-  wsl_zsh();
-  wsl_lunarvim();
+  wsl_fonts()
+  wsl_zsh()
+  wsl_lunarvim()
 }
 wsl_dev() {
-  wsl_gitconfig();
-  wsl_asdf();
+  wsl_gitconfig()
+  wsl_asdf()
 }
 wsl_init() {
   echod "Init"
