@@ -30,7 +30,7 @@ wsl_dev() {
 wsl_init() {
   echod "Init"
   echod "Fix WSL Network"
-  echo "[network]" | sudo tee -a /etc/wsl.conf
+  echo "[network]" | sudo tee /etc/wsl.conf
   echo "generateResolvConf = false" | sudo tee -a /etc/wsl.conf
   echod "Restart shell"
   git clone https://github.com/nilsonsmf/home ~/dotfiles
