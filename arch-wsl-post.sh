@@ -16,6 +16,7 @@ echod() {
 wsl_update() {
   wsl_init()
   wsl_packages()
+  wsl_conf()
   wsl_yay()
 }
 wsl_tools() {
@@ -33,10 +34,6 @@ wsl_init() {
   echo "[network]" | sudo tee /etc/wsl.conf
   echo "generateResolvConf = false" | sudo tee -a /etc/wsl.conf
   echod "Restart shell"
-  git clone https://github.com/nilsonsmf/home ~/dotfiles
-  rm -rf ~/.zshrc
-  ln -s -f ~/dotfiles/.bash_aliases ~/.bash_aliases
-  ln -s -f ~/dotfiles/.zshrc ~/.zshrc
 }
 wsl_packages() {
   echod "Update packages"
@@ -45,6 +42,12 @@ wsl_packages() {
   sudo pacman -Syy archlinux-keyring
   sudo pacman -Syyuu wget yarn npm git pip rust cargo base-devel ssh-tools
   sudo pacman -Syyuu neovim
+}
+wsl_conf() {
+  git clone https://github.com/nilsonsmf/home ~/dotfiles
+  rm -rf ~/.zshrc
+  ln -s -f ~/dotfiles/.bash_aliases ~/.bash_aliases
+  ln -s -f ~/dotfiles/.zshrc ~/.zshrc
 }
 wsl_lunarvim() {
   echod "Install Lunarvim"
