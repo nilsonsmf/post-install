@@ -43,7 +43,7 @@ wsl_packages() {
   sudo pacman -Syy archlinux-keyring --noconfirm
   sudo pacman -Syyuu --noconfirm wget yarn npm git rust cargo ssh-tools exa bat
   sudo pacman -S base-devel 
-  sudo pacman -S --noconfirm neovim
+  sudo pacman -S --noconfirm neovim the_silver_searcher
 }
 wsl_conf() {
   git clone https://github.com/nilsonsmf/home ~/dotfiles
