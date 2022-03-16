@@ -40,9 +40,10 @@ wsl_packages() {
   echod "Update packages"
   sudo pacman-key --init
   sudo pacman-key --populate
-  sudo pacman -Syy archlinux-keyring
-  sudo pacman -Syyuu wget yarn npm git pip rust cargo base-devel ssh-tools
-  sudo pacman -Syyuu neovim
+  sudo pacman -Syy archlinux-keyring --noconfirm
+  sudo pacman -Syyuu --noconfirm wget yarn npm git rust cargo ssh-tools
+  sudo pacman -S base-devel 
+  sudo pacman -S --noconfirm neovim
 }
 wsl_conf() {
   git clone https://github.com/nilsonsmf/home ~/dotfiles
