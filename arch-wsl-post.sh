@@ -41,7 +41,7 @@ wsl_packages() {
   sudo pacman-key --init
   sudo pacman-key --populate
   sudo pacman -Syy archlinux-keyring --noconfirm
-  sudo pacman -Syyuu --noconfirm wget yarn npm git rust cargo ssh-tools
+  sudo pacman -Syyuu --noconfirm wget yarn npm git rust cargo ssh-tools exa bat
   sudo pacman -S base-devel 
   sudo pacman -S --noconfirm neovim
 }
